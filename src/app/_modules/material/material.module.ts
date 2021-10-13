@@ -18,7 +18,9 @@ MatCheckboxModule,
 MatRadioModule,
 MatToolbarModule,
 MatSortModule,
-MatPaginatorModule
+MatPaginatorModule,
+MatAutocompleteModule,
+
 }
 from '@angular/material';
 
@@ -41,6 +43,8 @@ MatRadioModule,
 MatToolbarModule,
 MatSortModule,
 MatPaginatorModule,
+MatAutocompleteModule,
+
 ];
 
 @NgModule({

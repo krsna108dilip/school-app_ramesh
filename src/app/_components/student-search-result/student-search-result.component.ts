@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, startWith, switchMap } from 'rxjs/operators';
 import { Examtypes } from 'src/app/_models/examtypes';
 import { StudentResult } from 'src/app/_models/StudentResult';
 import { AlertService } from 'src/app/_services/alert.service';
@@ -19,6 +21,8 @@ export class StudentSearchResultComponent implements OnInit {
   submit: boolean = false;
   ssrForm: FormGroup;
   examtypes: Examtypes[];
+  options :Observable<any>;
+  filteredOptions: Observable<any>;
 
   displayColumns: string[] = ['id', 'sid', 'sname', 'classsection', 'telugu', 'hindi',
 'english', 'maths', 'science', 'social', 'examtype'];
@@ -40,8 +44,27 @@ export class StudentSearchResultComponent implements OnInit {
     });
 
     this.getExamTypes();
+    this.filteredOptions = this.ssrForm.controls.studentid.valueChanges.pipe(
+      startWith(''),
+      debounceTime(400),
+      distinctUntilChanged(),
+      switchMap(val => {
+            return this.filter(val || '')
+       })
+    )
   }
 
+  filter(val: string): Observable<any> {
+
+    
+    return this.studentService.getStudentSidAutocomplete(val)
+     .pipe( res => {
+      return this.options=res;
+     }
+      
+       )
+     
+   }
   getExamTypes() {
     this.studentService.getAllExamTypes().subscribe(res =>
       this.examtypes = res);

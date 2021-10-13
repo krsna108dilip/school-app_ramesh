@@ -38,6 +38,9 @@
           </button>
         </section>
     </form>
+    <div>
+      <span style="color:darkred;"><b>Note:</b> -1 marks indicate student is absent for that subject</span> 
+    </div>
   </mat-card-content>
 </mat-card>
 <br>
@@ -163,7 +166,7 @@
 
 
       </table>
-      <mat-paginator *ngIf="hasData"  [pageSizeOptions]="[10,50,100]" [pageSize]="10"
+      <mat-paginator  [pageSizeOptions]="[10,50,100]" [pageSize]="10"
                       showFirstLastButtons
                       aria-label="Select page of periodic elements"
                       >

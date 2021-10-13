@@ -16,6 +16,7 @@ loginForm: FormGroup;
 loading = false;
 submitted = false;
 returnUrl: string;
+subcription:boolean=false;
 
 
 
@@ -27,7 +28,10 @@ returnUrl: string;
 
 
     ) {
-
+this.authService.subcriptionValidation().subscribe(flag => {
+  this.subcription=flag;
+  console.log("flag value from login component="+flag);
+})
   }
 
   ngOnInit() {

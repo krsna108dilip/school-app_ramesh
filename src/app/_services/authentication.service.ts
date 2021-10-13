@@ -64,6 +64,17 @@ public get currentAuthValue(): SchoolConstant {
   return this.currentAuthSubject.value;
 }
 
+subcriptionValidation()
+{
+
+  return this.http.get<any>(`${environment.apiUrl}schoolUsers/subscriptionValidation`)
+  .pipe(map(res => {
+    console.log("flag="+res);
+    return res.flag || false;
+    
+  }));
+}
+
 login(username, password) {
 
 return this.http.post<any>(`${environment.apiUrl}schoolUsers/userCheck`,

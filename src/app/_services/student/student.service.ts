@@ -20,6 +20,22 @@ export class StudentService {
 constructor(private http: HttpClient) {
  }
 
+ public getStudentSidAutocomplete(prefix:string): Observable<any> {
+
+  let params = new HttpParams();
+  params = params.append('sidprefix', prefix);
+
+  return this.http.get<any>(`${environment.apiUrl}StudentResults/allsids`,{params})
+  .pipe(map(res => {
+    return res;
+  })
+    );
+
+  //return of(this.standards);
+
+}
+
+
 
 public getAllStandards(): Observable<Standards[]> {
 

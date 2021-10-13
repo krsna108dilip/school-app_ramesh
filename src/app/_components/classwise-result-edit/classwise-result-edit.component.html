@@ -13,6 +13,9 @@
         <section class="display-section-class">
           <mat-label>Class Section : {{classsec}}</mat-label>
         </section>
+        <div>
+          <span style="color:darkred;"><b>Note:</b> -1 marks indicate student is absent for that subject</span> 
+        </div>
     </mat-card-subtitle>
     <mat-card-content class="mat-card-class-edit-content">
       <section class="display-section-class">
@@ -25,7 +28,7 @@
             <span *ngIf="form.get('telugu').errors && (form.get('telugu').errors.min ||
             form.get('telugu').errors.max || form.get('telugu').errors.minlength ||
             form.get('telugu').errors.maxlength)">
-              <strong>Telugu : </strong>manimum: 1 and maximum: 100</span>
+              <strong>Telugu : </strong>manimum: -1 and maximum: 100</span>
           </mat-error>
         </mat-form-field>
         </section>
@@ -40,7 +43,7 @@
               <span *ngIf="form.get('hindi').errors && (form.get('hindi').errors.min ||
               form.get('hindi').errors.max || form.get('hindi').errors.minlength ||
               form.get('hindi').errors.maxlength)">
-                <strong>Hindi : </strong>manimum: 1 and maximum: 100</span>
+                <strong>Hindi : </strong>manimum: -1 and maximum: 100</span>
             </mat-error>
           </mat-form-field>
           </section>
@@ -55,7 +58,7 @@
                 <span *ngIf="form.get('english').errors && (form.get('english').errors.min ||
                 form.get('english').errors.max || form.get('english').errors.minlength ||
                 form.get('english').errors.maxlength)">
-                  <strong>English: </strong>manimum: 1 and maximum: 100</span>
+                  <strong>English: </strong>manimum: -1 and maximum: 100</span>
               </mat-error>
             </mat-form-field>
             </section>
@@ -70,7 +73,7 @@
                   <span *ngIf="form.get('maths').errors && (form.get('maths').errors.min ||
                   form.get('maths').errors.max || form.get('maths').errors.minlength ||
                   form.get('maths').errors.maxlength)">
-                    <strong>Mathametics: </strong>manimum: 1 and maximum: 100</span>
+                    <strong>Mathametics: </strong>manimum: -1 and maximum: 100</span>
                 </mat-error>
               </mat-form-field>
               </section>
@@ -85,7 +88,7 @@
                     <span *ngIf="form.get('science').errors && (form.get('science').errors.min ||
                     form.get('science').errors.max || form.get('science').errors.minlength ||
                     form.get('science').errors.maxlength)">
-                      <strong>Science: </strong>manimum: 1 and maximum: 100</span>
+                      <strong>Science: </strong>manimum: -1 and maximum: 100</span>
                   </mat-error>
                 </mat-form-field>
                 </section>
@@ -100,7 +103,7 @@
                       <span *ngIf="form.get('social').errors && (form.get('social').errors.min ||
                       form.get('social').errors.max || form.get('social').errors.minlength ||
                       form.get('social').errors.maxlength)">
-                        <strong>Social: </strong>manimum: 1 and maximum: 100</span>
+                        <strong>Social: </strong>manimum: -1 and maximum: 100</span>
                     </mat-error>
                   </mat-form-field>
                   </section>

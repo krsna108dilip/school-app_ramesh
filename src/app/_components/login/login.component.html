@@ -1,5 +1,21 @@
 <div style="margin-top:100px;">
 </div>
+<div *ngIf="!subcription" >
+  <mat-card class="mat-card-login">
+    <mat-card-title style="text-align: left;">
+  <h3>Subcription</h3>
+    </mat-card-title>
+    <mat-card-content style="text-align: center;">
+  <section class="display-section">
+    Subcription ended. Please contact your tehnical support team.
+  </section>
+  </mat-card-content>
+  </mat-card>
+
+</div>
+
+<div *ngIf="subcription" >
+
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 <mat-card class="mat-card-login">
   <mat-card-title style="text-align: left;">
@@ -44,3 +60,4 @@
 
 </mat-card>
 </form>
+</div>
