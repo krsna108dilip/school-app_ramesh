@@ -20,6 +20,34 @@ export class StudentService {
 constructor(private http: HttpClient) {
  }
 
+ public getStudentMarksChartByExamTypeAndSid(examtypeId:string,sid:string): Observable<any> {
+
+  let params = new HttpParams();
+  
+  params = params.append('sid', sid);
+
+  if(examtypeId=='1000')
+  {
+    params = params.append('allexamtypes', 'all');
+    return this.http.get<any>(`${environment.apiUrl}StudentResults/sidallexamsreport`,{params})
+    .pipe(map(res => {
+      return res;
+    })
+      );
+  
+  }
+  else{
+    params = params.append('examTypeId', examtypeId);
+    return this.http.get<any>(`${environment.apiUrl}StudentResults/sidexamreport`,{params})
+    .pipe(map(res => {
+      return res;
+    })
+      );
+  
+  }
+
+   }
+
  public getStudentSidAutocomplete(prefix:string): Observable<any> {
 
   let params = new HttpParams();

@@ -20,6 +20,10 @@ import { ErrorInterceptor } from 'src/app/_helpers/ErrorInterceptor';
 import { ClasswiseResultEditComponent } from 'src/app/_components/classwise-result-edit/classwise-result-edit.component';
 import { MatDialogRef } from '@angular/material';
 import { StudentService } from 'src/app/_services/student/student.service';
+import { GoogleChartsModule,ScriptLoaderService } from 'angular-google-charts';
+import { StudentMarksReportComponent } from 'src/app/_components/student-marks-report/student-marks-report.component';
+
+
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import { StudentService } from 'src/app/_services/student/student.service';
     StudentSearchResultComponent,
     ClasswiseResultComponent,
     ClasswiseResultEditComponent,
+    StudentMarksReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,12 +45,16 @@ import { StudentService } from 'src/app/_services/student/student.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+   GoogleChartsModule.forRoot(),
+
   ],
   providers: [AuthenticationService, AlertService, StudentService,
 
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    ScriptLoaderService
+
 
 
   ],

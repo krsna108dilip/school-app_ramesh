@@ -1,0 +1,76 @@
+<mat-card>
+  <mat-card-title>
+    <mat-grid-list cols="12" width="100%" rowHeight="50px">
+      <mat-grid-tile colspan="4" class="mat-title-left">
+        <h3>Student Search Result</h3>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-title>
+
+  <mat-card-content>
+    <form [formGroup]="ssrForm" (ngSubmit)="onSubmit()">
+      <section style="display: inline !important;" >
+      <mat-form-field class="mat-form-field-edit" style="width:88% !important;" appearance="fill">
+        <mat-label>Student ID</mat-label>
+        <input formControlName="studentid" name="studentid" id="studentid" matInput
+        placeholder="Student ID" 
+        [matAutocomplete]="auto" >
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+                *ngFor="let option of filteredOptions | async"
+                [value]="option.id">
+              {{option.sid}}
+           </mat-option>
+       </mat-autocomplete>
+        <mat-error *ngIf="!ssrForm.get('studentid').valid || ssrForm.get('studentid').touched">
+          <span *ngIf="ssrForm.get('studentid').hasError('required')"><strong>Student ID: </strong>required</span>
+          <span *ngIf="ssrForm.get('studentid').errors && ssrForm.get('studentid').errors.minlength"><strong>Student ID: </strong>minimum 2 characters required</span>
+          <span *ngIf="ssrForm.get('studentid').errors && ssrForm.get('studentid').errors.maxlength"><strong>Student ID: </strong>maximum 30 characters allowed</span>
+        </mat-error>
+      </mat-form-field>
+     
+        <mat-form-field class="mat-form-field-edit" style="width:88% !important;" appearance="fill">
+          <mat-label>Exam Type</mat-label>
+          <mat-select formControlName="examtypeid" matInput placeholder="Select Exam Type"
+           >
+           <mat-option value="1000">--All--</mat-option>
+
+           <mat-option *ngFor="let item of examtypes" [value]="item.id">
+             {{item.examtype}}
+           </mat-option>
+           </mat-select>
+          <mat-error *ngIf="!ssrForm.get('examtypeid').valid || ssrForm.get('examtypeid').touched">
+            <span *ngIf="ssrForm.get('studentid').hasError('required')"><strong>Exam Type: </strong>please choose</span>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button class="mat-button" color="accent" [disabled]="loading">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm-1"></span>
+          <b>Submit</b>
+        </button>
+        </section>
+        
+    </form>
+   <!--  <div>
+      <span style="color:darkred;"><b>Note:</b> -1 marks indicate student is absent for that subject</span> 
+    </div> -->
+    </mat-card-content>
+  </mat-card>
+
+  <br>
+  <mat-card>
+   
+    <mat-card-content>
+      <google-chart 
+      [title]="myTitle"
+      [type]="myType" 
+      [data]="myData"
+      [width]="myWidth"
+      [height]="myHeight"
+      [options]="myOptions"
+        >
+      </google-chart> 
+    </mat-card-content>
+</mat-card>
+
+
+  

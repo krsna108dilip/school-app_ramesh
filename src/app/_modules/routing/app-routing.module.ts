@@ -4,6 +4,7 @@ import { ClasswiseResultComponent } from 'src/app/_components/classwise-result/c
 import { HomeComponent } from 'src/app/_components/home/home.component';
 import { LoginComponent } from 'src/app/_components/login/login.component';
 import { RegisterComponent } from 'src/app/_components/register/register.component';
+import { StudentMarksReportComponent } from 'src/app/_components/student-marks-report/student-marks-report.component';
 import { StudentSearchResultComponent } from 'src/app/_components/student-search-result/student-search-result.component';
 import { AuthGuard } from 'src/app/_helpers/AuthGuard';
 
@@ -16,8 +17,7 @@ const routes: Routes = [
   {path: 'studentsearchresult', component: StudentSearchResultComponent},
   {path: 'classwiseresult', component: ClasswiseResultComponent },
   //, canActivate: [AuthGuard], data:{ roles:['ROLE_ADMIN','TechAdmin']} },
-
-
+  {path: 'studentmarksreport', component: StudentMarksReportComponent },
   {path: '**', redirectTo: 'login'}
 
 ];
