@@ -1,3 +1,25 @@
-<p>
-  bulk-qr-code-generator works!
-</p>
+<!-- <form [formGroup]="bqcForm" (ngSubmit)="onSubmit()"> -->
+<mat-card class="mat-card-login">
+  <mat-card-title style="text-align: left;">
+  </mat-card-title>
+  <mat-card-subtitle>
+    To Generate all CR codes, Please click the following submit button.
+  </mat-card-subtitle>
+  <mat-card-content style="text-align: center;">
+<!-- <section class="display-section">
+  To Generate all CR codes, Please click the following submit button.
+</section> -->
+  <section class="display-section">
+    <button mat-raised-button class="mat-button" color="accent" [disabled]="loading"
+    (click)="bulkQrCodeSubmit()"
+
+    >
+      <span *ngIf="loading" class="spinner-border spinner-border-sm-1"></span>
+      <b>Bulk QR Code Generation</b>
+    </button>
+  </section>
+
+  </mat-card-content>
+
+</mat-card>
+<!-- </form> -->

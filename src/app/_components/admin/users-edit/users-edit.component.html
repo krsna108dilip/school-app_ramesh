@@ -1,0 +1,66 @@
+<form [formGroup]='form' >
+  <mat-card class="mat-card-user-edit">
+    <mat-card-title>
+      <label mat-card-title>{{title}}</label>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <section class="display-section-label" *ngIf="this.data.isEdit">
+        <mat-label>Student ID : {{uid}}</mat-label>
+      </section>
+    </mat-card-subtitle>
+    <mat-card-content >
+      <section class="display-section-class">
+        <mat-form-field class="mat-form-field-edit" appearance="fill">
+          <mat-label>User Name </mat-label>
+          <input type="text" formControlName="username" name="username" id="username"
+          matInput placeholder="User Name" >
+          <mat-error *ngIf="!form.get('username').valid || form.get('username').touched">
+            <span *ngIf="form.get('username').hasError('required')"><strong>User Name: </strong>required</span>
+            <span *ngIf="form.get('username').errors && form.get('username').errors.minlength"><strong>User Name: </strong>minimum 6 characters required</span>
+            <span *ngIf="form.get('username').errors && form.get('username').errors.maxlength"><strong>User Name: </strong>maximum 20 characters allowed</span>
+          </mat-error>
+        </mat-form-field>
+        </section>
+        <section class="display-section-class">
+          <mat-form-field class="mat-form-field-edit" appearance="fill">
+            <mat-label>Password </mat-label>
+            <input type="text" formControlName="password" name="password" id="password"
+            matInput placeholder="Password" readonly >
+            <mat-error *ngIf="!form.get('password').valid || form.get('password').touched">
+              <span *ngIf="form.get('password').hasError('required')"><strong>Password: </strong>required</span>
+              <span *ngIf="form.get('password').errors && form.get('password').errors.minlength"><strong>Password: </strong>minimum 6 characters required</span>
+              <span *ngIf="form.get('password').errors && form.get('password').errors.maxlength"><strong>Password: </strong>maximum 20 characters allowed</span>
+            </mat-error>
+          </mat-form-field>
+          </section>
+          <section class="display-section-class">
+            <mat-form-field class="mat-form-field-edit" style="width:88% !important;" appearance="fill">
+              <mat-label>Role</mat-label>
+              <mat-select formControlName="roleid" matInput placeholder="Select Role"
+               >
+               <mat-option *ngFor="let item of roles" [value]="item.id">
+                 {{item.name}}
+               </mat-option>
+               </mat-select>
+              <mat-error *ngIf="!form.get('roleid').valid || form.get('roleid').touched">
+                <span *ngIf="form.get('roleid').hasError('required')"><strong>Role: </strong>please choose</span>
+              </mat-error>
+            </mat-form-field>
+            </section>
+          <section class="display-section">
+            <button mat-raised-button class="mat-button" color="accent" (click)="onSubmit()"
+            [disabled] ="form.invalid"
+            >
+              <b *ngIf="this.data.isEdit">Update</b>
+              <b *ngIf="!this.data.isEdit">Create</b>
+            </button>
+            <button mat-button (click)="close()">Close</button>
+          </section>
+
+    </mat-card-content>
+    <!-- <mat-card-actions>
+
+    </mat-card-actions> -->
+  </mat-card>
+
+</form>

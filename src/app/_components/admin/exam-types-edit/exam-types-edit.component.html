@@ -1,0 +1,39 @@
+<form [formGroup]='form' >
+  <mat-card class="mat-card-examtype-edit">
+    <mat-card-title>
+      <label mat-card-title>{{title}}</label>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <section class="display-section-label" *ngIf="this.data.isEdit">
+        <mat-label>Exam Type ID : {{etid}}</mat-label>
+      </section>
+    </mat-card-subtitle>
+    <mat-card-content >
+      <section class="display-section-class">
+        <mat-form-field class="mat-form-field-edit" appearance="fill">
+          <mat-label>Exam Type Name </mat-label>
+          <input type="text" formControlName="etname" name="etname" id="etname"
+          matInput placeholder="Exam Type Name" >
+          <mat-error *ngIf="!form.get('etname').valid || form.get('etname').touched">
+            <span *ngIf="form.get('etname').hasError('required')"><strong>Exam Type Name: </strong>required</span>
+            <span *ngIf="form.get('etname').errors && form.get('etname').errors.minlength"><strong>Exam Type Name: </strong>minimum 6 characters required</span>
+            <span *ngIf="form.get('etname').errors && form.get('etname').errors.maxlength"><strong>Exam Type Name: </strong>maximum 20 characters allowed</span>
+          </mat-error>
+        </mat-form-field>
+        </section>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <section class="display-section">
+        <button mat-raised-button class="mat-button" color="accent" (click)="onSubmit()"
+        [disabled] ="form.invalid"
+        >
+          <b *ngIf="this.data.isEdit">Update</b>
+          <b *ngIf="!this.data.isEdit">Create</b>
+        </button>
+        <button mat-button (click)="close()">Close</button>
+      </section>
+    </mat-card-actions>
+  </mat-card>
+
+</form>

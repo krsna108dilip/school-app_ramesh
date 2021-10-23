@@ -1,3 +1,6 @@
+import { StandardsEditComponent } from './../../_components/admin/standards-edit/standards-edit.component';
+import { ExamTypesEditComponent } from './../../_components/admin/exam-types-edit/exam-types-edit.component';
+import { UsersEditComponent } from './../../_components/admin/users-edit/users-edit.component';
 import { StandardsComponent } from './../../_components/admin/standards/standards.component';
 import { ApproveMarksComponent } from './../../_components/admin/approve-marks/approve-marks.component';
 import { UsersComponent } from './../../_components/admin/users/users.component';
@@ -32,6 +35,7 @@ import { StudentService } from 'src/app/_services/student/student.service';
 import { StudentMarksReportComponent } from 'src/app/_components/student-marks-report/student-marks-report.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { ExamTypesComponent } from 'src/app/_components/admin/exam-types/exam-types.component';
+import { AdminService } from 'src/app/_services/admin/admin.service';
 
 
 @NgModule({
@@ -55,6 +59,9 @@ import { ExamTypesComponent } from 'src/app/_components/admin/exam-types/exam-ty
     ApproveMarksComponent,
     ExamTypesComponent,
     StandardsComponent,
+    UsersEditComponent,
+    ExamTypesEditComponent,
+    StandardsEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +76,7 @@ import { ExamTypesComponent } from 'src/app/_components/admin/exam-types/exam-ty
 
   ],
   providers: [AuthenticationService, AlertService, StudentService,
+    AdminService,
 
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
@@ -77,7 +85,14 @@ import { ExamTypesComponent } from 'src/app/_components/admin/exam-types/exam-ty
 
 
   ],
-  entryComponents: [ ConfirmDialogComponent, ClasswiseResultEditComponent],
+  entryComponents: [
+    ConfirmDialogComponent,
+    ClasswiseResultEditComponent,
+    UsersEditComponent,
+    ExamTypesEditComponent,
+    StandardsEditComponent,
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

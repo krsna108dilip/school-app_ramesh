@@ -1,0 +1,40 @@
+<form [formGroup]='form' >
+  <mat-card class="mat-card-exantype-edit">
+    <mat-card-title>
+      <label mat-card-title>{{title}}</label>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <section class="display-section-label" *ngIf="this.data.isEdit">
+        <mat-label>Standard ID : {{sid}}</mat-label>
+      </section>
+    </mat-card-subtitle>
+    <mat-card-content >
+      <section class="display-section-class">
+        <mat-form-field class="mat-form-field-edit" appearance="fill">
+          <mat-label>Standard Name </mat-label>
+          <input type="text" formControlName="sname" name="sname" id="sname"
+          matInput placeholder="Standard Name" >
+          <mat-error *ngIf="!form.get('sname').valid || form.get('sname').touched">
+            <span *ngIf="form.get('sname').hasError('required')"><strong>User Name: </strong>required</span>
+            <span *ngIf="form.get('sname').errors && form.get('sname').errors.minlength"><strong>Standard Name: </strong>minimum 6 characters required</span>
+            <span *ngIf="form.get('sname').errors && form.get('sname').errors.maxlength"><strong>Standard Name: </strong>maximum 20 characters allowed</span>
+          </mat-error>
+        </mat-form-field>
+        </section>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <section class="display-section">
+        <button mat-raised-button class="mat-button" color="accent" (click)="onSubmit()"
+        [disabled] ="form.invalid"
+        >
+          <b *ngIf="this.data.isEdit">Update</b>
+          <b *ngIf="!this.data.isEdit">Create</b>
+
+        </button>
+        <button mat-button (click)="close()">Close</button>
+      </section>
+    </mat-card-actions>
+  </mat-card>
+
+</form>
