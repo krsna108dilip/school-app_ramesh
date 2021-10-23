@@ -84,11 +84,34 @@
 </mat-menu>
 </li>
 
-<li class="nav-item" *ngIf="isAuthorized"
+<li class="nav-item"
   [routerLinkActive]="['link-active']"
   [routerLinkActiveOptions]="{ exact: true}">
-<button mat-button [routerLink]="['/']"><strong>QR Code</strong>
+<button mat-button [matMenuTriggerFor]="qrMenu" >
+  <strong>QR Code</strong>
 </button>
+<mat-menu #qrMenu="matMenu" >
+  <button mat-menu-item [routerLink]="['/openscanner']">Open Scanner</button>
+  <button mat-menu-item [routerLink]="['/bulkupload']">Bulk Upload</button>
+</mat-menu>
+</li>
+
+<li class="nav-item"
+  [routerLinkActive]="['link-active']"
+  [routerLinkActiveOptions]="{ exact: true}">
+<button mat-button [matMenuTriggerFor]="adminMenu" >
+  <strong>Admin</strong>
+</button>
+<mat-menu #adminMenu="matMenu" >
+  <button mat-menu-item [routerLink]="['/generaterankbystandandard']">
+    <strong>Generate Rank By Standard</strong>
+  </button>
+  <button mat-menu-item [routerLink]="['/bulkqrcodegenerator']">Bulk QR Code Generator</button>
+  <button mat-menu-item [routerLink]="['/users']">Users</button>
+  <button mat-menu-item [routerLink]="['/approvemarks']">Approve Marks</button>
+  <button mat-menu-item [routerLink]="['/examtypes']">Exam Types</button>
+  <button mat-menu-item [routerLink]="['/standards']">Standards</button>
+</mat-menu>
 </li>
 
 <li class="nav-item" *ngIf="!isAuthorized"
