@@ -1,3 +1,10 @@
+import { StandardsComponent } from './../../_components/admin/standards/standards.component';
+import { ApproveMarksComponent } from './../../_components/admin/approve-marks/approve-marks.component';
+import { UsersComponent } from './../../_components/admin/users/users.component';
+import { BulkQrCodeGeneratorComponent } from './../../_components/admin/bulk-qr-code-generator/bulk-qr-code-generator.component';
+import { GenerateRankByStandardComponent } from './../../_components/admin/generate-rank-by-standard/generate-rank-by-standard.component';
+import { BulkUploadComponent } from './../../_components/qr-code/bulk-upload/bulk-upload.component';
+import { OpenScannerComponent } from './../../_components/qr-code/open-scanner/open-scanner.component';
 import { DummyPageComponent } from './../../_components/dummy-page/dummy-page.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,6 +31,7 @@ import { StudentService } from 'src/app/_services/student/student.service';
 // import { GoogleChartsModule,ScriptLoaderService } from 'angular-google-charts';
 import { StudentMarksReportComponent } from 'src/app/_components/student-marks-report/student-marks-report.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
+import { ExamTypesComponent } from 'src/app/_components/admin/exam-types/exam-types.component';
 
 
 @NgModule({
@@ -39,6 +47,14 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
     ClasswiseResultEditComponent,
     StudentMarksReportComponent,
     DummyPageComponent,
+    OpenScannerComponent,
+    BulkUploadComponent,
+    GenerateRankByStandardComponent,
+    BulkQrCodeGeneratorComponent,
+    UsersComponent,
+    ApproveMarksComponent,
+    ExamTypesComponent,
+    StandardsComponent,
   ],
   imports: [
     BrowserModule,
