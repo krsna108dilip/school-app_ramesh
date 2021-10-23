@@ -31,6 +31,13 @@
 [ngClass]="{show: isExpanded}">
 <ul class="navbar-nav flex-grow">
 
+  <li class="nav-item"
+  [routerLinkActive]="['link-active']"
+  [routerLinkActiveOptions]="{ exact: true}">
+<button mat-button [routerLink]="['/dummy']"><strong>Dummy Page</strong>
+</button>
+</li>
+
 <li class="nav-item"
   [routerLinkActive]="['link-active']"
   [routerLinkActiveOptions]="{ exact: true}">

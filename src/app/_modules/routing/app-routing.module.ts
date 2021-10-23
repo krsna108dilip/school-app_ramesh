@@ -1,3 +1,4 @@
+import { DummyPageComponent } from './../../_components/dummy-page/dummy-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ClasswiseResultComponent } from 'src/app/_components/classwise-result/classwise-result.component';
@@ -14,11 +15,13 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'dummy', component: DummyPageComponent},
   {path: 'studentsearchresult', component: StudentSearchResultComponent},
   {path: 'classwiseresult', component: ClasswiseResultComponent },
   //, canActivate: [AuthGuard], data:{ roles:['ROLE_ADMIN','TechAdmin']} },
   {path: 'studentmarksreport', component: StudentMarksReportComponent },
-  {path: '**', redirectTo: 'login'}
+  {path: '**', redirectTo: 'login'},
+
 
 ];
 
