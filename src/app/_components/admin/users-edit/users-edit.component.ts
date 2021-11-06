@@ -39,12 +39,14 @@ export class UsersEditComponent implements OnInit {
       this.title = 'Create New User';
       this.uid = '';
       this.username = '';
+      this.role ='';
     }
     else {
       this.title = 'Edit User';
       this.uid = this.data.user.uid;
       this.username = this.data.user.username;
       this.role = this.data.user.role;
+      console.log(this.role);
     }
    }
 
@@ -53,7 +55,11 @@ export class UsersEditComponent implements OnInit {
       uid: ['', []],
       username: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       password: ['password', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
-      roleid: [null, [Validators.required]]
+      roleid: [this.role, [Validators.required]]
+      });
+
+      this.adminService.GetUserRoles().subscribe(res => {
+        this.roles = res;
       });
 
       this.form.setValue({
@@ -66,9 +72,7 @@ export class UsersEditComponent implements OnInit {
 
 
 
-        this.adminService.GetUserRoles().subscribe(res => {
-          this.roles = res;
-        });
+
 
 
 

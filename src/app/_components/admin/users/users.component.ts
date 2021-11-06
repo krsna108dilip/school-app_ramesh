@@ -1,3 +1,4 @@
+import { Users } from './../../../_models/Users';
 import { UsersEditComponent } from './../users-edit/users-edit.component';
 import { AdminService } from 'src/app/_services/admin/admin.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -13,8 +14,8 @@ import { MatSort } from '@angular/material/sort';
 })
 export class UsersComponent implements OnInit {
 
-  displayColumns: string[] = ['actions', 'uid', 'uname', 'role'];
-  dataSource = new MatTableDataSource<any>([]);
+  displayColumns: string[] = ['actions', 'id', 'username', 'role'];
+  dataSource = new MatTableDataSource<Users>([]);
 
   @ViewChild(MatPaginator, {static: true} ) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -29,9 +30,15 @@ export class UsersComponent implements OnInit {
 
 
   ngOnInit() {
-    this.dataSource.data = [{uid: 1, uname: 'Testing', role: 'Admin'}];
+    this.adminService.GetAllUsers().subscribe(res => {
+      console.log(res);
+
+    this.dataSource.data = res;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+
+    });
+
   }
 
 addNewUser() {
@@ -65,7 +72,7 @@ addNewUser() {
             // width: '600px',
             data: {
               isEdit: true,
-              user: {uid: userObj.uid, username: userObj.uname, role: userObj.role}
+              user: {uid: userObj.id, username: userObj.username, role: userObj.role}
                 }
               }
     );

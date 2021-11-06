@@ -2,9 +2,10 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Role } from 'src/app/_models/Role';
-import { AnonymousSubject } from 'rxjs/internal/Subject';
+import * as data from '../../_mock/admin_mock.json';
+import { Users } from 'src/app/_models/Users';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,8 @@ public BulkQrCodeGenerate() {
 
 public GetUserRoles(): Observable<Role[]> {
 
+//return of(data.Roles);
+
   return this.http.get<any>(`${environment.apiUrl}adminactions/getallRoles`)
   .pipe(
     catchError(
@@ -27,6 +30,18 @@ public GetUserRoles(): Observable<Role[]> {
     ));
 
 }
+
+public GetAllUsers(): Observable<Users[]> {
+
+  //return of(data.Users);
+
+    return this.http.get<any>(`${environment.apiUrl}adminactions/getallUsers`)
+    .pipe(
+      catchError(
+      err => { throw err; }
+      ));
+
+  }
 
 public AddNewUser(newUser: any) {
   return this.http.post<any>(`${environment.apiUrl}adminactions/adduser`, newUser)

@@ -1,0 +1,38 @@
+{
+  "Roles":[
+    {
+      "id":"role1",
+      "rolename":"role1"
+    },
+    {
+      "id":"role2",
+      "rolename":"role2"
+    },
+    {
+      "id":"role3",
+      "rolename":"role3"
+    }
+  ],
+  "Users": [
+    {
+      "id": "1",
+      "username": "Peter1",
+      "password":"pass1",
+      "role": "role1"
+    },
+    {
+      "id": "2",
+      "username": "Peter2",
+      "password":"pass1",
+      "role": "role2"
+    },
+    {
+      "id": "3",
+      "username": "Peter3",
+      "password":"pass1",
+      "role": "role3"
+    }],
+    "Standards":[],
+    "ExamTypes":[]
+}
+

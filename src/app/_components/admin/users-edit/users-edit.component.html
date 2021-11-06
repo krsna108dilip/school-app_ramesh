@@ -39,7 +39,7 @@
               <mat-select formControlName="roleid" matInput placeholder="Select Role"
                >
                <mat-option *ngFor="let item of roles" [value]="item.id">
-                 {{item.name}}
+                 {{item.rolename}}
                </mat-option>
                </mat-select>
               <mat-error *ngIf="!form.get('roleid').valid || form.get('roleid').touched">

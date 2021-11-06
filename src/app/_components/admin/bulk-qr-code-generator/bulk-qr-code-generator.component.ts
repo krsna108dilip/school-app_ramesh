@@ -24,6 +24,7 @@ export class BulkQrCodeGeneratorComponent implements OnInit {
     this.adminService.BulkQrCodeGenerate().subscribe((res: any) => {
       if (res.status === 200) {
         this.alertService.Success('Bulk QR Code Geneterated Successful.');
+        this.loading = false;
       }
     }
     , error => {
