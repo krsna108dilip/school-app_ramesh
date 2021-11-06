@@ -32,7 +32,33 @@
       "password":"pass1",
       "role": "role3"
     }],
-    "Standards":[],
-    "ExamTypes":[]
+    "Standards":[
+      {
+        "id":"1",
+        "standardname":"standard1"
+      },
+      {
+        "id":"2",
+        "standardname":"standard2"
+      },
+      {
+        "id":"3",
+        "standardname":"standard3"
+      }
+    ],
+    "ExamTypes":[
+      {
+        "id":"1",
+        "examtypename":"type1"
+      },
+      {
+        "id":"2",
+        "examtypename":"type2"
+      },
+      {
+        "id":"3",
+        "examtypename":"type3"
+      }
+    ]
 }
 

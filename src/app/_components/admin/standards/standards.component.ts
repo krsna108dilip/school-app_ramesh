@@ -1,3 +1,4 @@
+import { Standard } from './../../../_models/admin/Standard';
 import { StandardsEditComponent } from './../standards-edit/standards-edit.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -13,8 +14,8 @@ import { AdminService } from 'src/app/_services/admin/admin.service';
 })
 export class StandardsComponent implements OnInit {
 
-  displayColumns: string[] = ['actions', 'sid', 'sname'];
-  dataSource = new MatTableDataSource<any>([]);
+  displayColumns: string[] = ['actions', 'id', 'standardname'];
+  dataSource = new MatTableDataSource<Standard>([]);
 
   @ViewChild(MatPaginator, {static: true} ) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -23,75 +24,55 @@ export class StandardsComponent implements OnInit {
     private adminService: AdminService,
     private dialog: MatDialog,
     ) {
-
    }
 
-
-
   ngOnInit() {
-    this.dataSource.data = [{sid: 1, sname: 'Testing'}];
+  this.getAllStandards();
+  }
+
+  getAllStandards() {
+    this.adminService.GetAllStandards().subscribe(res => {
+      console.log(res);
+    this.dataSource.data = res;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    });
   }
 
 addNewStandard() {
   let editDialog;
-
   const dialogConfig = new MatDialogConfig();
-
   editDialog = this.dialog.open(StandardsEditComponent, {
           // height: '800px',
           // width: '600px',
           data: {
             isEdit: false,
-            standard: {sid: 1, sname: 'Testing'}
+            standard: {}
               }
             }
   );
   editDialog.disableClose = true;
+
+  editDialog.afterClosed().subscribe(result => {
+    this.getAllStandards();
+  });
 }
   openEditStandard(event, standardObj: any): void {
-
-
     let editDialog;
-
     const dialogConfig = new MatDialogConfig();
-
     editDialog = this.dialog.open(StandardsEditComponent, {
             // height: '800px',
             // width: '600px',
             data: {
               isEdit: true,
-              standard: {sid: 1, sname: 'Testing'}
+              standard: {sid: standardObj.id, sname: standardObj.standardname}
                 }
               }
     );
     editDialog.disableClose = true;
+    editDialog.afterClosed().subscribe(result => {
+      this.getAllStandards();
+    });
 
-
-    // //console.log(schoolObj);
-
-    //  this.adminService.getStudentMarksById(schoolObj.id.toString()).subscribe(
-    //    res => {
-
-    //      editDialog = this.dialog.open(ClasswiseResultEditComponent, {
-    //       // height: '800px',
-    //       // width: '600px',
-    //       data: {
-    //         student: res
-    //           }
-    //     });
-    //     editDialog.disableClose = true;
-
-    //     editDialog.afterClosed().subscribe(result => {
-    //     this.getData(this.cwrForm.controls.standardId.value,
-    //      this.cwrForm.controls.examTypeId.value);
-
-    //      });
-    //    },
-    //    catchError( err => {
-    //      throw err;
-    //    })
-    //  );
   }
 }

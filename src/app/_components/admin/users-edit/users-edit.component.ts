@@ -69,18 +69,6 @@ export class UsersEditComponent implements OnInit {
         roleid: this.role,
       });
 
-
-
-
-
-
-
-
-
-
-
-
-
   }
 
   get f() { return this.form.controls; }

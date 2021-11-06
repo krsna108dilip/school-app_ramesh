@@ -1,4 +1,4 @@
-import { Users } from './../../../_models/Users';
+import { Users } from '../../../_models/admin/Users';
 import { UsersEditComponent } from './../users-edit/users-edit.component';
 import { AdminService } from 'src/app/_services/admin/admin.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -24,12 +24,13 @@ export class UsersComponent implements OnInit {
     private adminService: AdminService,
     private dialog: MatDialog,
     ) {
-
    }
 
-
-
   ngOnInit() {
+  this.getUsers();
+  }
+
+  getUsers() {
     this.adminService.GetAllUsers().subscribe(res => {
       console.log(res);
 
@@ -57,16 +58,14 @@ addNewUser() {
   );
   editDialog.disableClose = true;
 
-
+  editDialog.afterClosed().subscribe(result => {
+    this.getUsers();
+  });
 }
 
   openEditUser(event, userObj: any): void {
-
-
     let editDialog;
-
     const dialogConfig = new MatDialogConfig();
-
     editDialog = this.dialog.open(UsersEditComponent, {
             // height: '800px',
             // width: '600px',
@@ -78,31 +77,9 @@ addNewUser() {
     );
     editDialog.disableClose = true;
 
-
-    // //console.log(schoolObj);
-
-    //  this.adminService.getStudentMarksById(schoolObj.id.toString()).subscribe(
-    //    res => {
-
-    //      editDialog = this.dialog.open(ClasswiseResultEditComponent, {
-    //       // height: '800px',
-    //       // width: '600px',
-    //       data: {
-    //         student: res
-    //           }
-    //     });
-    //     editDialog.disableClose = true;
-
-    //     editDialog.afterClosed().subscribe(result => {
-    //     this.getData(this.cwrForm.controls.standardId.value,
-    //      this.cwrForm.controls.examTypeId.value);
-
-    //      });
-    //    },
-    //    catchError( err => {
-    //      throw err;
-    //    })
-    //  );
+    editDialog.afterClosed().subscribe(result => {
+      this.getUsers();
+    });
   }
 
 }

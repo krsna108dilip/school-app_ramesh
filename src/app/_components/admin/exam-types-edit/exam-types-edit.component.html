@@ -26,8 +26,8 @@
     <mat-card-actions>
       <section class="display-section">
         <button mat-raised-button class="mat-button" color="accent" (click)="onSubmit()"
-        [disabled] ="form.invalid"
-        >
+        [disabled] ="loading" >
+        <span *ngIf="loading" class="spinner-border spinner-border-sm-1"></span>
           <b *ngIf="this.data.isEdit">Update</b>
           <b *ngIf="!this.data.isEdit">Create</b>
         </button>

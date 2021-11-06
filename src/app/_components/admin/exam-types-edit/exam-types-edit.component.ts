@@ -1,3 +1,4 @@
+import { AdminService } from 'src/app/_services/admin/admin.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -13,7 +14,7 @@ import { UsersEditComponent } from '../users-edit/users-edit.component';
 })
 export class ExamTypesEditComponent implements OnInit {
 
-
+ loading = false;
   form: FormGroup;
   etid: string;
   etname: string;
@@ -24,7 +25,7 @@ export class ExamTypesEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private alertService: AlertService,
-    private studentService: StudentService,
+    private adminService: AdminService,
     private dialogRef: MatDialogRef<ExamTypesEditComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
@@ -33,7 +34,7 @@ export class ExamTypesEditComponent implements OnInit {
     // this.isEdit = this.data.isEdit;
 
     if (this.data.isEdit === false) {
-      this.title = 'Create New Exam Type'
+      this.title = 'Create New Exam Type';
       this.etid = '';
       this.etname = '';
     } else {
@@ -48,25 +49,73 @@ export class ExamTypesEditComponent implements OnInit {
       etid: ['', []],
       etname: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)]]
       });
+
+      this.form.setValue({
+        etid: this.etid,
+        etname:this.etname
+      });
+
+
   }
 
   get f() { return this.form.controls; }
 
   onSubmit() {
-    const examtype = {
-      etid: this.etid,
-      etname : this.etname,
-    };
-
-    // this.studentService.studentMarksUpdate(user).subscribe(res => {
 
 
-    //   this.dialogRef.close();
-    //   this.alertService.Success('Marks are updated');
-    // });
 
-    //this.dialogRef.close({data: {firstlang:this.f.firstlang.value, sid:this.f.sid.value}});
+
+    //this.submitted = true;
+
+    if (this.form.invalid) {
+      return;
+      }
+
+      this.loading = true;
+
+      //this.loading = true;
+
+
+      if (this.data.isEdit === true) {
+
+        const examtype = {
+          etid: this.etid,
+          etname : this.f.etname.value,
+        };
+
+        this.adminService.EditExamType(examtype).subscribe(res => {
+          if (res.status === 200) {
+            this.alertService.Success('Examtype updated successfully');
+            this.loading = false;
+            this.close();
+          }
+
+        },error =>{
+          this.loading = false;
+          throw error;
+        }
+        );
+
+      } else {
+        const examtype = {
+          etname : this.f.etname.value,
+        };
+
+        this.adminService.AddNewExamType(examtype).subscribe(res => {
+          if (res.status === 200) {
+            this.alertService.Success('New examtype added successfully');
+            this.loading = false;
+            this.close();
+          }
+
+        },error =>{
+          this.loading = false;
+          throw error;
+        }
+        );
+
     }
+  }
 
     close() {
         this.dialogRef.close();

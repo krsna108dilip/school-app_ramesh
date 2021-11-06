@@ -1,3 +1,4 @@
+import { ExamType } from './../../../_models/admin/ExamType';
 import { ExamTypesEditComponent } from './../exam-types-edit/exam-types-edit.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatDialogConfig } from '@angular/material';
@@ -11,8 +12,8 @@ import { AdminService } from 'src/app/_services/admin/admin.service';
 })
 export class ExamTypesComponent implements OnInit {
 
-  displayColumns: string[] = ['actions', 'etid', 'etname'];
-  dataSource = new MatTableDataSource<any>([]);
+  displayColumns: string[] = ['actions', 'id', 'examtypename'];
+  dataSource = new MatTableDataSource<ExamType>([]);
 
   @ViewChild(MatPaginator, {static: true} ) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -24,12 +25,17 @@ export class ExamTypesComponent implements OnInit {
 
    }
 
-
-
   ngOnInit() {
-    this.dataSource.data = [{etid: 1, etname: 'Testing'}];
+    this.getExamTypes();
+  }
+
+  getExamTypes() {
+    this.adminService.GetAllExamTypes().subscribe(res =>{
+      this.dataSource.data = res;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    });
+
   }
 
 addNewExamType() {
@@ -42,20 +48,18 @@ addNewExamType() {
           // width: '600px',
           data: {
             isEdit: false,
-            examtype: {etid: 1, etname: 'Testing'}
+            examtype: {}
               }
             }
   );
   editDialog.disableClose = true;
 
-
+  editDialog.afterClosed().subscribe(result => {
+    this.getExamTypes();
+  });
 }
 
-
-
-
-
-  openEditExamType(event, userObj: any): void {
+  openEditExamType(event, examtypeObj: any): void {
 
 
     let editDialog;
@@ -67,11 +71,15 @@ addNewExamType() {
             // width: '600px',
             data: {
               isEdit: true,
-              examtype: {etid: 1, etname: 'Testing'}
+              examtype: {etid: examtypeObj.id, etname: examtypeObj.examtypename}
                 }
               }
     );
     editDialog.disableClose = true;
+
+    editDialog.afterClosed().subscribe(result => {
+      this.getExamTypes();
+    });
 
 
     // //console.log(schoolObj);

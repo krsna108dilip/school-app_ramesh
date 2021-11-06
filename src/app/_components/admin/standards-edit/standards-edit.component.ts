@@ -1,3 +1,4 @@
+import { AdminService } from 'src/app/_services/admin/admin.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -17,11 +18,12 @@ export class StandardsEditComponent implements OnInit {
   sname: string;
   type: string;
   title: string;
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
     private alertService: AlertService,
-    private studentService: StudentService,
+    private adminService: AdminService,
     private dialogRef: MatDialogRef<StandardsEditComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
@@ -44,25 +46,68 @@ export class StandardsEditComponent implements OnInit {
       sid: ['', []],
       sname: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)]]
       });
+
+      this.form.setValue({
+        sid: this.sid,
+        sname:this.sname,
+      });
+
   }
 
   get f() { return this.form.controls; }
 
   onSubmit() {
-    let standard = {
-      sid: this.sid,
-      sname : this.sname,
+    if (this.form.invalid) {
+      return;
     }
 
-    // this.studentService.studentMarksUpdate(user).subscribe(res => {
+      this.loading = true;
+
+      //this.loading = true;
 
 
-    //   this.dialogRef.close();
-    //   this.alertService.Success('Marks are updated');
-    // });
+      if (this.data.isEdit === true) {
 
-    //this.dialogRef.close({data: {firstlang:this.f.firstlang.value, sid:this.f.sid.value}});
-    }
+        const standard = {
+          id: this.sid,
+          standardname : this.f.sname.value,
+        };
+
+        this.adminService.EditStandard(standard).subscribe(res => {
+          if (res.status === 200) {
+            this.alertService.Success('Standart updated successfully');
+            this.loading = false;
+            this.close();
+          }
+
+        },error =>{
+          this.loading = false;
+          throw error;
+        }
+        );
+
+      } else {
+        const standard = {
+          id:this.sid,
+          standardname : this.f.sname.value,
+        };
+
+        this.adminService.AddNewStandard(standard).subscribe(res => {
+          if (res.status === 200) {
+            this.alertService.Success('New user added successfully');
+            this.loading = false;
+            this.close();
+          }
+
+        },error =>{
+          this.loading = false;
+          throw error;
+        }
+        );
+      }
+  }
+
+
 
     close() {
         this.dialogRef.close();
