@@ -65,7 +65,7 @@ addNewUser() {
             // width: '600px',
             data: {
               isEdit: true,
-              user: {uid: 1, username: 'Testing'}
+              user: {uid: userObj.uid, username: userObj.uname, role: userObj.role}
                 }
               }
     );
