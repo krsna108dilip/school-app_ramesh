@@ -6,6 +6,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { Hero } from 'src/app/_mock/in-memory-admin-data.service';
+
 
 @Component({
   selector: 'app-users',
@@ -16,6 +18,7 @@ export class UsersComponent implements OnInit {
 
   displayColumns: string[] = ['actions', 'id', 'username', 'role'];
   dataSource = new MatTableDataSource<Users>([]);
+  hero: Hero[];
 
   @ViewChild(MatPaginator, {static: true} ) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -27,7 +30,15 @@ export class UsersComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.dataSource.data = [];
+   
+
   this.getUsers();
+  this.adminService.getHeroes().subscribe(res => {
+    this.hero = res;
+    console.log('Heroes:' + this.hero[9].id);
+    console.log('Heroes:' + this.hero[9].name);
+  });
   }
 
   getUsers() {

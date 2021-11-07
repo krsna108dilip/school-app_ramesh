@@ -79,16 +79,16 @@ export class ExamTypesEditComponent implements OnInit {
       if (this.data.isEdit === true) {
 
         const examtype = {
-          etid: this.etid,
-          etname : this.f.etname.value,
+          id: this.etid,
+          examtypename : this.f.etname.value,
         };
 
         this.adminService.EditExamType(examtype).subscribe(res => {
-          if (res.status === 200) {
+          //if (res.status === 200) {
             this.alertService.Success('Examtype updated successfully');
             this.loading = false;
             this.close();
-          }
+          //}
 
         },error =>{
           this.loading = false;
@@ -98,15 +98,16 @@ export class ExamTypesEditComponent implements OnInit {
 
       } else {
         const examtype = {
-          etname : this.f.etname.value,
+          id : this.etid,
+          examtypename : this.f.etname.value,
         };
 
         this.adminService.AddNewExamType(examtype).subscribe(res => {
-          if (res.status === 200) {
+          //if (res.status === 200) {
             this.alertService.Success('New examtype added successfully');
             this.loading = false;
             this.close();
-          }
+          //}
 
         },error =>{
           this.loading = false;

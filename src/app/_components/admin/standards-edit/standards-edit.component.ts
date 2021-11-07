@@ -74,11 +74,12 @@ export class StandardsEditComponent implements OnInit {
         };
 
         this.adminService.EditStandard(standard).subscribe(res => {
-          if (res.status === 200) {
+          //if (res.status === 200) {
             this.alertService.Success('Standart updated successfully');
             this.loading = false;
-            this.close();
-          }
+            //this.close();
+            this.dialogRef.close();
+          //}
 
         },error =>{
           this.loading = false;
@@ -93,11 +94,14 @@ export class StandardsEditComponent implements OnInit {
         };
 
         this.adminService.AddNewStandard(standard).subscribe(res => {
-          if (res.status === 200) {
+          console.log('result'+ res);
+          //if (res.status === 200) {
+           
             this.alertService.Success('New user added successfully');
             this.loading = false;
-            this.close();
-          }
+            this.dialogRef.close();
+            //this.close();
+          //}
 
         },error =>{
           this.loading = false;

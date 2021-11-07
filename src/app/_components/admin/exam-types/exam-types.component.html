@@ -35,14 +35,25 @@
         <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
 
-        <tr class="mat-row" *matNoDataRow>
+        <!-- <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" colspan="10">
             No Data Found
           </td>
         </tr>
 
       </table>
-      <mat-paginator  [pageSizeOptions]="[10,50,100]" [pageSize]="10"
+      <mat-paginator   -->
+      </table>
+        <table>
+          <tr *ngIf="!dataSource.data.length">
+            <td style="text-align: center; color: red" [attr.colspan]="displayColumns.length">
+              <b>No Records Found!</b>
+            </td>
+          </tr>
+        </table>
+        <mat-paginator  
+        [hidden]="!dataSource.data.length"
+        [pageSizeOptions]="[10,50,100]" [pageSize]="10"
                       showFirstLastButtons
                       aria-label="Select page of periodic elements"
                       >

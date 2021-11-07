@@ -92,15 +92,15 @@ export class UsersEditComponent implements OnInit {
         id: this.uid,
         username : this.f.username.value,
         password: this.f.password.value,
-        roleid: this.f.roleid.value
+        role: this.f.roleid.value
       };
 
       this.adminService.EditUser(updateUser).subscribe(res => {
-        if (res.status === 200) {
+        //if (res.status === 200) {
           this.alertService.Success('User updated successfully');
           this.loading = false;
           this.close();
-        }
+        //}
 
       },error =>{
         this.loading = false;
@@ -113,17 +113,18 @@ export class UsersEditComponent implements OnInit {
 
     } else {
       const addUser = {
+        id: this.uid,
         username : this.f.username.value,
         password: this.f.password.value,
-        roleid: this.f.roleid.value
+        role: this.f.roleid.value
       };
 
       this.adminService.AddNewUser(addUser).subscribe(res => {
-        if (res.status === 200) {
+        //if (res.status === 200) {
           this.alertService.Success('New user added successfully');
           this.loading = false;
           this.close();
-        }
+        //}
 
       },error =>{
         this.loading = false;

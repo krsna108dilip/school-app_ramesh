@@ -1,3 +1,4 @@
+import { InMemoryAdminDataService } from './../../_mock/in-memory-admin-data.service';
 import { StandardsEditComponent } from './../../_components/admin/standards-edit/standards-edit.component';
 import { ExamTypesEditComponent } from './../../_components/admin/exam-types-edit/exam-types-edit.component';
 import { UsersEditComponent } from './../../_components/admin/users-edit/users-edit.component';
@@ -33,9 +34,11 @@ import { MatDialogRef } from '@angular/material';
 import { StudentService } from 'src/app/_services/student/student.service';
 // import { GoogleChartsModule,ScriptLoaderService } from 'angular-google-charts';
 import { StudentMarksReportComponent } from 'src/app/_components/student-marks-report/student-marks-report.component';
-import { NgxChartsModule }from '@swimlane/ngx-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ExamTypesComponent } from 'src/app/_components/admin/exam-types/exam-types.component';
 import { AdminService } from 'src/app/_services/admin/admin.service';
+import { environment } from 'src/environments/environment';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 
 @NgModule({
@@ -73,13 +76,15 @@ import { AdminService } from 'src/app/_services/admin/admin.service';
     MaterialModule,
     NgxChartsModule,
    //GoogleChartsModule.forRoot(),
+   environment.production ?
+    [] : InMemoryWebApiModule.forRoot(InMemoryAdminDataService)
 
   ],
   providers: [AuthenticationService, AlertService, StudentService,
     AdminService,
 
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    //{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    //{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     //ScriptLoaderService
 
 
