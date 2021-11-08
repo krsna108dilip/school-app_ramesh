@@ -1,3 +1,4 @@
+import { ChangePasswordDialogComponent } from './../../_components/change-password-dialog/change-password-dialog.component';
 import { InMemoryAdminDataService } from './../../_mock/in-memory-admin-data.service';
 import { StandardsEditComponent } from './../../_components/admin/standards-edit/standards-edit.component';
 import { ExamTypesEditComponent } from './../../_components/admin/exam-types-edit/exam-types-edit.component';
@@ -65,6 +66,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
     UsersEditComponent,
     ExamTypesEditComponent,
     StandardsEditComponent,
+    ChangePasswordDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +98,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
     UsersEditComponent,
     ExamTypesEditComponent,
     StandardsEditComponent,
+    ChangePasswordDialogComponent,
 
   ],
   bootstrap: [AppComponent]

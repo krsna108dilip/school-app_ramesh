@@ -1,10 +1,11 @@
+import { ChangePasswordDialogComponent } from './../change-password-dialog/change-password-dialog.component';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Roles } from 'src/app/_models/Roles';
 import { AlertService } from 'src/app/_services/alert.service';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-nav-menu',
@@ -94,11 +95,21 @@ export class NavMenuComponent implements OnInit {
         this.authService.logout();
     this.router.navigate(['/login']);
       }
-    })
+    });
+  }
 
+  changePassword() {
+    let editDialog;
+    const dialogConfig = new MatDialogConfig();
+    editDialog = this.dialog.open(ChangePasswordDialogComponent, {
+          // height: '800px',
+          // width: '600px',
+          data: {
+            user: {username: this.userName}
+          }
+        });
 
-
-
+    editDialog.disableClose = true;
 
   }
 

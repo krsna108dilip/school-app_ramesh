@@ -1,3 +1,4 @@
+import { ChangePassword } from 'src/app/_models/changepassword';
 import { ExamType } from './../_models/admin/ExamType';
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
@@ -33,69 +34,86 @@ export class InMemoryAdminDataService implements InMemoryDbService  {
     ];
 
     const users: Users[] = [
-      // {
-      //   id: '1',
-      //   username: 'Peter1',
-      //   password: 'pass1',
-      //   role: 'role1'
-      // },
-      // {
-      //   id: '2',
-      //   username: 'Peter2',
-      //   password: 'pass2',
-      //   role: 'role2'
-      // },
-      // {
-      //   id: '3',
-      //   username: 'Peter3',
-      //   password: 'pass3',
-      //   role: 'role3'
-      // },
-      // {
-      //   id: '4',
-      //   username: 'Peter4',
-      //   password: 'pass4',
-      //   role: 'role4'
-      // }
-      
+      {
+        id: '1',
+        username: 'Peter1',
+        password: 'pass1',
+        role: 'role1'
+      },
+      {
+        id: '2',
+        username: 'Peter2',
+        password: 'pass2',
+        role: 'role2'
+      },
+      {
+        id: '3',
+        username: 'Peter3',
+        password: 'pass3',
+        role: 'role3'
+      },
+      {
+        id: '4',
+        username: 'Peter4',
+        password: 'pass4',
+        role: 'role4'
+      }
+
     ];
 
     const standards: Standard[] = [
-      // {
-      //   id: '1',
-      //   standardname: 'standard1'
-      // },
-      // {
-      //   id: '2',
-      //   standardname: 'standard2'
-      // },
-      // {
-      //   id: '3',
-      //   standardname: 'standard3'
-      // },
-      // {
-      //   id: '4',
-      //   standardname: 'standard4'
-      // }
+      {
+        id: '1',
+        standardname: 'standard1'
+      },
+      {
+        id: '2',
+        standardname: 'standard2'
+      },
+      {
+        id: '3',
+        standardname: 'standard3'
+      },
+      {
+        id: '4',
+        standardname: 'standard4'
+      }
     ];
 
     const examtypes: ExamType[] = [
-      // {
-      //   id: '1',
-      //   examtypename:'type1'
-      // },
-      // {
-      //   id: '2',
-      //   examtypename: 'type2'
-      // },
-      // {
-      //   id: '3',
-      //   examtypename: 'type3'
-      // },
-      // {
-      //   id: '4',
-      //   examtypename: 'type4'
-      // }
+      {
+        id: '1',
+        examtypename:'type1'
+      },
+      {
+        id: '2',
+        examtypename: 'type2'
+      },
+      {
+        id: '3',
+        examtypename: 'type3'
+      },
+      {
+        id: '4',
+        examtypename: 'type4'
+      }
+    ];
+
+    const changepassword: ChangePassword[] = [
+      {id: '1', username: 'user', currentpassword: 'test',
+      newpassword: 'test123', confirmpassword: 'test123' },
+      {id: '2', username: 'admin', currentpassword: 'test',
+      newpassword: 'test123', confirmpassword: 'test123' },
+    ];
+
+    const generaterank: any = [
+      {id:1, standardId: '1', examTypeId: '1'},
+      {id:2, standardId: '2', examTypeId: '2'},
+    ];
+
+    const approvemarks: any = [
+      {id:1, flag: true },
+      {id:2, flag: false }
     ];
 
 
@@ -111,7 +129,9 @@ export class InMemoryAdminDataService implements InMemoryDbService  {
       { id: 9, name: 'Adrian Carsini' },
       { id: 10, name: 'Abigail Mitchell'},
     ];
-    return {roles, users, standards, examtypes, heroes};
+    return {roles, users, standards, examtypes, changepassword,
+      generaterank, approvemarks,
+        heroes};
   }
 
 }

@@ -1,3 +1,43 @@
-<p>
-  generate-rank-by-standard works!
-</p>
+<mat-card>
+  <mat-card-subtitle>
+    <h3>Generate Rank by Standard</h3>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+
+      </div>
+      <section style="display: inline !important;" >
+        <mat-form-field class="mat-form-field-edit" style="width:88% !important;" appearance="fill">
+          <mat-label>Standard</mat-label>
+          <mat-select formControlName="standardId" matInput
+          placeholder="Select Standard" >
+           <mat-option *ngFor="let item of standards" [value]="item.id">
+             {{item.standardname}}
+           </mat-option>
+           </mat-select>
+          <mat-error *ngIf="!form.get('standardId').valid || form.get('standardId').touched">
+            <span *ngIf="form.get('standardId').hasError('required')"><strong>Class: </strong>please choose</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="mat-form-field-edit" style="width:88% !important;" appearance="fill">
+          <mat-label>Exam Type</mat-label>
+          <mat-select formControlName="examTypeId" matInput placeholder="Select Exam"
+           >
+           <mat-option *ngFor="let item of examtypes" [value]="item.id">
+             {{item.examtypename}}
+           </mat-option>
+           </mat-select>
+          <mat-error *ngIf="!form.get('examTypeId').valid || form.get('examTypeId').touched">
+            <span *ngIf="form.get('examTypeId').hasError('required')"><strong>Exam Type: </strong>please choose</span>
+          </mat-error>
+        </mat-form-field>
+          <button mat-raised-button class="mat-button" color="accent" [disabled]="loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm-1"></span>
+            <b>Submit</b>
+          </button>
+        </section>
+    </form>
+
+  </mat-card-content>
+</mat-card>

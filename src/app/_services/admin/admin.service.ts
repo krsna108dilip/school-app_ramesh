@@ -9,6 +9,7 @@ import { Role } from 'src/app/_models/Role';
 import * as data from '../../_mock/admin_mock.json';
 import { Users } from 'src/app/_models/admin/Users';
 import { Hero } from 'src/app/_mock/in-memory-admin-data.service';
+import { ChangePassword } from 'src/app/_models/changepassword';
 
 @Injectable({
   providedIn: 'root'
@@ -134,6 +135,33 @@ public AddNewUser(newUser: Users): Observable<Users[]> {
 public EditUser(updateUser: Users): Observable<Users[]> {
   // `${environment.apiUrl}adminactions/updateuser`
   return this.http.put<Users[]>('api/users', updateUser)
+  .pipe(
+    catchError(
+    err => { throw err; }
+    ));
+}
+
+public ChangePassword(password: ChangePassword): Observable<ChangePassword[]> {
+  // `${environment.apiUrl}adminactions/updateuser`
+  return this.http.put<ChangePassword[]>('api/changepassword', password)
+  .pipe(
+    catchError(
+    err => { throw err; }
+    ));
+}
+
+public GenerateRankByStandard(model: any): Observable<any> {
+  // `${environment.apiUrl}adminactions/updateuser`
+  return this.http.post<any>('api/generaterank', model)
+  .pipe(
+    catchError(
+    err => { throw err; }
+    ));
+}
+
+public ApproveAllMarks(model: any): Observable<any> {
+  // `${environment.apiUrl}adminactions/updateuser`
+  return this.http.post<any>('api/approvemarks', model)
   .pipe(
     catchError(
     err => { throw err; }

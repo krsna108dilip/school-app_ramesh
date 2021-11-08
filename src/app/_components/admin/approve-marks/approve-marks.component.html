@@ -1,3 +1,29 @@
-<p>
-  approve-marks works!
-</p>
+<mat-card>
+  <mat-card-subtitle>
+    <h3>Approve Marks</h3>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+
+      </div>
+      <section style="display: inline !important;" >
+        <mat-checkbox formControlName="marks">Approve All Marks</mat-checkbox>
+        <br />
+        <div *ngIf="submit && form.get('marks').hasError('required')" class="invalid-feedback">Accept Ts & Cs is required</div>
+        <!-- <div *ngIf="form.invalid">
+          <mat-error *ngIf="!form.get('marks').valid || form.get('marks').touched">
+            <span *ngIf="form.get('marks').hasError('required')"><strong>Approve All Marks: </strong>please check</span>
+          </mat-error>
+
+        </div> -->
+          <br />
+          <button mat-raised-button class="mat-button" color="accent" [disabled]="loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm-1"></span>
+            <b>Submit</b>
+          </button>
+        </section>
+    </form>
+
+  </mat-card-content>
+</mat-card>

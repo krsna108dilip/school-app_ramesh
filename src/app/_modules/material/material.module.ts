@@ -20,11 +20,11 @@ MatToolbarModule,
 MatSortModule,
 MatPaginatorModule,
 MatAutocompleteModule,
+MatIconModule,
 
-}
-from '@angular/material';
+} from '@angular/material';
 
-const materailArray =[
+const materailArray = [
 MatDialogModule,
 MatFormFieldModule,
 MatInputModule,
@@ -44,6 +44,7 @@ MatToolbarModule,
 MatSortModule,
 MatPaginatorModule,
 MatAutocompleteModule,
+MatIconModule,
 
 ];
 
